@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Survey Results!</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	</head>
+	<body>
+		<div id="container">
+			{% if color == 'blue' %}
+			<h1>{{color}} Ninjas!</h1>
+			<img class="pic" src="{{url_for('static', filename='img/leonardo.jpg')}}" alt="">
+			<a class="route blue" href="/ninja">Back to Ninjas</a>
+			{% elif color == 'orange' %}
+			<h1>{{color}} Ninjas!</h1>
+			<img class="pic" src="{{url_for('static', filename='img/michelangelo.jpg')}}" alt="">
+			<a class="route orange" href="/ninja">Back to Ninjas</a>
+			{% elif color == 'red' %}
+			<h1>{{color}} Ninjas!</h1>
+			<img class="pic" src="{{url_for('static', filename='img/raphael.jpg')}}" alt="">
+			<a class="route red" href="/ninja">Back to Ninjas</a>
+			{% elif color == 'purple' %}
+			<h1>{{color}} Ninjas!</h1>
+			<img class="pic" src="{{url_for('static', filename='img/donatello.jpg')}}" alt="Donatello">
+			<a class="route purple" href="/ninja">Back to Ninjas</a>
+			{% elif color %}
+			<h1>Not a Ninja!</h1>
+			<img class="pic" src="{{url_for('static', filename='img/notapril.jpg')}}" alt="">
+			<h3>But you can has a Megan Fox!</h3>
+			<a class="route" href="/ninja">Back to Ninjas</a>
+			{% else %}
+			<h1>Ninjas!</h1>
+			<div class="pictainer">
+				<a href="/ninja"><img class="pic" src="{{url_for('static', filename='img/tmnt.png')}}" alt=""></a>
+			</div>
+			<div class="links">
+				<a class="box purple" href="/ninja/purple"></a>
+				<a class="box blue" href="/ninja/blue"></a>
+				<a class="box orange" href="/ninja/orange"></a>
+				<a class="box red" href="/ninja/red"></a>
+			</div>
+			{% endif %}
+		</div>
+	</body>
+</html>

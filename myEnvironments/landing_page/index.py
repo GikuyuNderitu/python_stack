@@ -4,7 +4,7 @@ To give a full accounting
 """
 
 from flask import Flask, render_template
-from livereload import Server, shell
+from livereload import Server
 
 app = Flask(__name__)
 app.debug = True
@@ -14,13 +14,19 @@ server = Server(app.wsgi_app)
 @app.route('/')
 def hello_world():
 	"""Route function hello_world to root."""
-	return render_template('index.html', name='Awesome!')
+	return render_template('index.html')
 
 
-@app.route('/success')
-def success():
-	"""GET success.html from template"""
-	return render_template('success.html')
+@app.route('/ninjas')
+def ninjas():
+	"""Route function ninjas from template"""
+	return render_template('ninjas.html')
+
+
+@app.route('/dojo/new')
+def dojo_form():
+	"""Return the dojo form"""
+	return render_template('dojo.html')
 
 
 server.watch('./')

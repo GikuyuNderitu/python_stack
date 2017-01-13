@@ -1,0 +1,42 @@
+<!-- TODO: Use  -->
+<html>
+	<head>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/static/js/app.js"></script>
+	</head>
+	<body>
+		<div id="container" data-num = '{{session['counter']}}'>
+			<h1>Welcome to the Great Number Game!</h1>
+			<h3>I am thinking of a number between 1 and 100</h3>
+			<h3>Take a guess!</h3>
+			{% if session['match'] == True: %}
+			<div class="alert green">
+				<h1>{{session['guess']}} was the number!</h1>
+				<a class="change" href="/play-again" id="route">Play again!</a>
+			</div>
+			{% elif session['times_played'] == '0' %}
+
+			{% else %}
+				{% if session['value'] == 'HIGH': %}
+				<div class="alert red"><h1>Too High!</h1></div>
+				{% else %}
+				<div class="alert red"><h1>Too Low!</h1></div>
+				{% endif %}
+			{% endif %}
+
+			{%  if 'match' not in session or not session['match']: %}
+			<form id="formid" action="/guess" method="post">
+				{% if not session['times_played']: %}
+				<input id="playcount" type="hidden" name="times_played" value="1">
+				{% else: %}
+				<input id="playcount" type="hidden" name="times_played" value="{{session["times-played"]}}">
+				{% endif %}
+				<input id="curguess" type="text" name="guess" placeholder="GUESS" required>
+				<button id="reset" class='change' type="submit">submit</button>
+			</form>
+			{% endif %}
+
+		</div>
+	</body>
+</html>
