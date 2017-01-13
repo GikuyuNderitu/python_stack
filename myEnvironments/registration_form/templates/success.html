@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Survey Results!</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	</head>
+	<body>
+		<div id="container">
+			<h1>Submitted Information</h1>
+
+			<section class="info">
+				<div class="row">
+					<p class="header">First Name:</p>
+					<p class="data">{{session['fname']}}</p>
+				</div>
+				<div class="row">
+					<p class="header">Last Name:</p>
+					<p class="data">{{session['lname']}}</p>
+				</div>
+				<div class="row">
+					<p class="header">Email:</p>
+					<p class="data">{{session['email']}}</p>
+				</div>
+			</section>
+			<a class="route" href="/reset">Go Back</a>
+		</div>
+	</body>
+</html>
