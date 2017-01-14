@@ -15,7 +15,6 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 @app.route('/', methods=['GET'])
 def index():
-	# session.clear()
 	return render_template("index.html")
 
 

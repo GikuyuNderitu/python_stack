@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Friends Example</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	</head>
+	<body>
+		<div id="container">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				{{messages[0]}}
+				{% endif %}
+			{% endwith %}
+			<div class="red flash">Here's some Message!</div>
+			<form action='/friends' method='POST'>
+				<label>
+					Email Address:
+					<input type="text" name="email" class="email">
+					<input type="submit" value="Submit" class="submit">
+				</label>
+			</form>
+		</div>
+	</body>
+</html>
