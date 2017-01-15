@@ -2,24 +2,36 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Friends Example</title>
+		<title>Email Logging</title>
 		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 	</head>
 	<body>
 		<div id="container">
 			{% with messages = get_flashed_messages() %}
 				{% if messages %}
-				{{messages[0]}}
+				<div class="red flash">{{messages[0]}}</div>
+				<form id="email-form" action='/process' method='POST'>
+					<div class="row">
+						<label for="email" class="label">Email Address:</label>
+						{% if messages[1] %}
+						<input type="text" name="email" id="email" class="email-input" value="{{messages[1]}}">
+						{% else %}
+						<input type="text" name="email" id="email" class="email-input">
+						{% endif %}
+					</div>
+					<input type="submit" value="Submit" class="submit home">
+				</form>
+				{% else %}
+
+				<form id="email-form" action='/process' method='POST'>
+					<div class="row">
+						<label for="email" class="label">Email Address:</label>
+						<input type="text" name="email" id="email" class="email-input" >
+					</div>
+					<input type="submit" value="Submit" class="submit home">
+				</form>
 				{% endif %}
 			{% endwith %}
-			<div class="red flash">Here's some Message!</div>
-			<form action='/friends' method='POST'>
-				<label>
-					Email Address:
-					<input type="text" name="email" class="email">
-					<input type="submit" value="Submit" class="submit">
-				</label>
-			</form>
 		</div>
 	</body>
 </html>
