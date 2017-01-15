@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Success</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div id="container">
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="green flash">{{messages[0]}}</div>
+			{% endif %}
+			{% endwith %}
+			<div class="header-row">
+				<h1 id="friends-head">Email Addresses Entered:</h1>
+				<a class="home" href="/">Enter Another Email</a>
+			</div>
+			{% for email in emails %}
+			<div class="row success-row">
+				<span class="email">{{email['email']}}</span> <span class="date-time">{{email['created_at']}}</span>
+				<a class="close" href="/delete/{{email['id']}}"><i class="fa fa-times close" aria-hidden="true"></i></a>
+			</div>
+			{% endfor %}
+		</div>
+	</body>
+</html>
