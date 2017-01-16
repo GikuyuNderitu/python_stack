@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin");
+* {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+html {
+  font-size: 1rem; }
+
+#container {
+  padding: 20px 10px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Cabin", sans-serif; }
+
+a {
+  color: black;
+  text-decoration: none; }
+  a:visited {
+    color: black; }
+  a:hover {
+    cursor: pointer; }
+
+header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 2px solid #06d;
+  width: 100%;
+  padding: 20px; }
+  header > h1 {
+    font-family: "Bungee Shade", cursive;
+    font-size: 3.5em; }
+
+#session-section {
+  font-size: 1.2em; }
+
+.session-button {
+  padding: 5px 10px;
+  border: 2px solid #06d;
+  border-radius: 9px; }
