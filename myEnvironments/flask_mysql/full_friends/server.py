@@ -27,32 +27,46 @@ def success():
 	return render_template('success.html', emails=emails)
 
 
-@app.route('/process', methods=['POST'])
-def submit():
-	if len(request.form['email']) < 1:
-		flash('You\'ve gotta type something man!')
-		return redirect('/')
-	elif not EMAIL_REGEX.match(request.form['email']):
-		flash('You\'ve submitted an incorrect email. Please, try again')
-		flash(request.form['email'])
+@app.route('/friends', methods=['POST'])
+def create():
+	incorrect = False
+	form = request.form
+	session['first_name'] = form['first_name']
+	session['last_name'] = form['last_name']
+	if len(form['first_name']) < 1:
+		incorrect = True
+		flash('You must enter a first name.', 'first_name')
+	if len(form['last_name']) < 1:
+		incorrect = True
+		flash('You must enter a last name.', 'last_name')
+	if len(form['email']) < 1:
+		incorrect = True
+		flash('You must enter an email.')
+	elif not EMAIL_REGEX.match(form['email']):
+		incorrect = True
+		flash('You\'ve submitted an invalid email. Please, try again', 'email')
+		session['email'] = form['email']
+	if incorrect:
 		return redirect('/')
 	else:
-		flash('The email address you entered (' + request.form['email'] + ') is a VALID email address! Thank you!')
-		query = "INSERT INTO emails (email, created_at, updated_at) VALUES (:email, NOW(), NOW())"
+		flash('Thank you for signing up to the friends DB!')
+		query = "INSERT INTO friends (first_name, last_name, email, created_at, updated_at) VALUES (:first_name, :last_name, :email, NOW(), NOW())"
 		data = {
-			'email': request.form['email']
+			'first_name': form['first_name'],
+			'last_name': form['last_name'],
+			'email': form['email']
 		}
 		mysql.query_db(query, data)
-		return redirect('/emails')
+	return redirect('/')
 
 
 @app.route('/delete/<email_id>', methods=['POST', 'GET', 'DELETE'])
 def delete(email_id):
 	print email_id
-	query = "DELETE FROM emails WHERE id = :id"
+	query = "DELETE FROM friends WHERE id = :id"
 	data = {'id': email_id}
 	mysql.query_db(query, data)
-	return redirect('/emails')
+	return redirect('/')
 
 
 server.watch('./')

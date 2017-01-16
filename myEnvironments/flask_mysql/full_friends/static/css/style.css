@@ -171,3 +171,24 @@ hr{
 .close:hover{
 	cursor: pointer;
 }
+
+.edit{
+	font-weight: 900;
+	text-decoration: none;
+	color: white;
+	background: black;
+	padding: 2px 7px;
+	border-radius: 4px;
+}
+
+.edit:visited{
+	color: white;
+}
+
+.edit:hover{
+	text-decoration: underline;
+}
+
+.space{
+	margin-left: 10px;
+}
