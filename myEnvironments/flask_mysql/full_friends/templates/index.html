@@ -39,16 +39,6 @@
 						{% endif %}
 					</div>
 					<input type="submit" value="Submit" class="submit home">
-					<!-- <div class="row">
-						<label for="email" class="label">Email Address:</label>
-						{% if messages[1] %}
-						<input type="text" name="email" id="email" class="friends-input" value="{{messages[1]}}">
-						{% else %}
-						<input type="text" name="email" id="email" class="friends-input">
-						{% endif %}
-					</div>
-					<input type="submit" value="Submit" class="submit home">
-				</form> -->
 				{% else %}
 				<h3 class="index-head">Create a friend!</h3>
 				<form id="friends-form" action='/friends' method='POST'>
@@ -77,8 +67,10 @@
 					<span class="name-data">{{friend['first_name']}} {{friend['last_name']}}</span>
 					<span class="email-data">{{friend['email']}}</span>
 					<span class="created-data">{{friend['created_at']}}</span>
-					<a class="" href="/delete/{{friend['id']}}"><i class="fa fa-times close" aria-hidden="true"></i></a>
-					<a class="edit" href="/friends/{{friend['id']}}">Edit<i class="fa fa-pencil space" aria-hidden="true"></i></a>
+					<span class="modifiers">
+						<a class="" href="/delete/{{friend['id']}}"><i class="fa fa-times close" aria-hidden="true"></i></a>
+						<a class="edit" href="/friends/{{friend['id']}}/edit">Edit<i class="fa fa-pencil space" aria-hidden="true"></i></a>
+					</span>
 				</div>
 				{% endfor %}
 				{% endif %}

@@ -36,6 +36,10 @@ hr{
 	margin-bottom: 30px;
 }
 
+.red-text{
+	color: red;
+}
+
 .red{
 	background: #800;
 	color: white;
@@ -95,12 +99,23 @@ hr{
 .results-data > *{
 	font-size: .7em;
 	justify-content: space-between;
+	margin: 0;
 }
-.success-row{
+.friend-row{
+	display: flex;
+	margin-top: 30px;
 	width: 100%;
-	justify-content: center;
+	justify-content: space-around;;
+}
+
+header{
+	width: 100%;
 	border-bottom: 3px solid #000;
-	padding-bottom: 4px
+	padding-bottom: 4px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 30px;
 }
 
 .header-row{
@@ -113,6 +128,7 @@ hr{
 .home{
 	box-shadow: -4px -3px #222;
 	transition: box-shadow 100ms ease-in;
+	margin-top: 30px;
 	margin-bottom: 10px;
 	font-size: 1.4em;
 	background-color: white;
@@ -131,6 +147,67 @@ hr{
 	color: white;
 	border: white;
 	background-color: #111;
+}
+
+#update-data{
+	width: 100%;
+}
+
+table *{
+	font-size: 1.4rem;
+}
+
+table, thead, tbody, tr{
+	width: 100%;
+}
+
+tr{
+	margin: 15px 0;
+}
+
+th{
+	font-size: 1.3em;
+}
+
+td{
+	font-weight: 300px;
+}
+
+td, th{
+	text-align: center;
+	width: 25%;
+	padding: 15px 0;
+}
+
+.current-state-row span, .current-state-row h3{
+	color: #00b;
+}
+
+td span, th > *{
+	max-width: 100%;
+}
+
+.form-update-input{
+	padding: 3px 8px;
+	outline: 0;
+	border-bottom: 2px solid #444;
+	transition: border-bottom 250ms ease-in-out;
+}
+
+.form-update-input:hover{
+	border-bottom: 4px dashed #dd2;
+}
+
+.form-update-input:focus{
+	border-bottom: 4px solid #700;
+}
+
+.form-update-row{
+	justify-content: space-between;
+}
+
+.form-update-row > .friends-input{
+	min-width: 0%;
 }
 
 .friends-input{
@@ -162,8 +239,11 @@ hr{
 	margin-right: 8%;
 }
 
+/*.modifiers{
+	margin-right: 10px;
+}*/
+
 .close{
-	/*margin-left: 15px;*/
 	color: #a00;
 	font-size: 3em
 }
@@ -172,12 +252,18 @@ hr{
 	cursor: pointer;
 }
 
+.close::after{
+	content: "   |";
+	color: black;
+	font-weight: 900;
+}
+
 .edit{
 	font-weight: 900;
 	text-decoration: none;
 	color: white;
 	background: black;
-	padding: 2px 7px;
+	padding: 1px 7px;
 	border-radius: 4px;
 }
 
@@ -186,6 +272,7 @@ hr{
 }
 
 .edit:hover{
+	cursor: pointer;
 	text-decoration: underline;
 }
 
