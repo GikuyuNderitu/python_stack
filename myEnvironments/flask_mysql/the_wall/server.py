@@ -9,15 +9,27 @@ app.debug = True
 app.secret_key = 'ThisIsSecret'
 bcrypt = Bcrypt(app)
 server = Server(app.wsgi_app)
-mysql = MySQLConnector(app, 'usersdb')
+mysql = MySQLConnector(app, 'thewalldb')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 
 @app.route('/')
 def index():
-	query = "SELECT id, first_name, last_name, email, DATE_FORMAT(created_at, '%m/%e/%Y %l:%i%p')as created_at, DATE_FORMAT(created_at, '%m/%e/%Y %l:%i%p')as updated_at FROM users"
-	user = mysql.query_db(query)
-	return render_template("index.html", user=user)
+	return render_template("index.html")
+
+
+@app.route('/wall')
+def wall():
+	comments = 'comment hello'
+	message_query = "SELECT users.id AS user_id, messages.id AS message_id, users.first_name, users.last_name, content AS message, DATE_FORMAT(messages.created_at, '%M %D %Y') AS created_at FROM messages JOIN users ON messages.user_id = users.id ORDER BY messages.id DESC"
+	messages = mysql.query_db(message_query)
+	comment_query = 	("SELECT users.id AS user_id, messages.id AS message_id, comments.id AS comment_id, users.first_name, users.last_name, comments.content AS comment, DATE_FORMAT(comments.created_at, '%M %D %Y') AS created_at "
+						"FROM users "
+						"JOIN comments ON comments.user_id = users.id "
+						"JOIN messages ON messages.id = comments.message_id "
+						"ORDER BY messages.id, created_at")
+	comments = mysql.query_db(comment_query)
+	return render_template("index.html", posts=messages, comments=comments)
 
 
 @app.route('/register', methods=['POST'])
@@ -66,7 +78,9 @@ def user():
 			'email': form['email'],
 			'pw_hash': pw_hash
 		}
-		mysql.query_db(query, data)
+
+		session['id'] = mysql.query_db(query, data)
+		session['first_name'] = fname
 
 	return redirect('/')
 
@@ -79,11 +93,9 @@ def login():
 
 	if not form['email'] or not EMAIL_REGEX.match(form['email']):
 		flash('Please enter a valid email.')
-		print form['email']
 		return redirect('/')
 	if not form['password'] or len(form['password']) < 8:
 		flash('Please enter a valid password')
-		print form['password']
 		return redirect('/')
 
 	query = "SELECT * FROM users WHERE email = :email LIMIT 1"
@@ -99,50 +111,43 @@ def login():
 		if not bcrypt.check_password_hash(user[0]['pw_hash'], password):
 			flash('You supplied the incorrect password')
 		else:
-			print 'successful login'
 			session['id'] = user[0]['id']
 			session['first_name'] = user[0]['first_name']
-	return redirect('/')
+	return redirect('/wall')
 
 
-@app.route('/users', methods=['POST'])
-def create():
-	incorrect = False
-	form = request.form
-	session['first_name'] = form['first_name']
-	session['last_name'] = form['last_name']
-	if not form['first_name'] or len(form['first_name']) < 3:
-		incorrect = True
-		flash('You must enter a first name greater than 3 characters.', 'first_name')
-	if not form['last_name'] or len(form['last_name']) < 3:
-		incorrect = True
-		flash('You must enter a last name greater than 3 characters.', 'last_name')
-	if not form['email']:
-		incorrect = True
-		flash('You must enter an email.')
-	elif not EMAIL_REGEX.match(form['email']):
-		incorrect = True
-		flash('You\'ve submitted an invalid email. Please, try again', 'email')
-		session['email'] = form['email']
-	if not form['password']:
-		incorrect = True
-		flash('You must enter a password.')
-	elif form['password'] < 8:
-		incorrect = True
-		flash('You must enter a password greater than 7 characters.')
+@app.route('/message', methods=['POST'])
+def message():
+	message = request.form['message']
+	if not message or len(message.strip()) < 1:
+		flash('You must enter a message ')
+		return redirect('/wall')
 
-	if incorrect:
-		return redirect('/')
-	else:
-		flash('Thank you for signing up to the users DB!')
-		query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (:first_name, :last_name, :email, NOW(), NOW())"
-		data = {
-			'first_name': form['first_name'],
-			'last_name': form['last_name'],
-			'email': form['email']
-		}
-		mysql.query_db(query, data)
-	return redirect('/')
+	query = "INSERT INTO messages (user_id, content, created_at, updated_at) VALUES (:user_id, :content, NOW(), NOW())"
+	data = {
+		'user_id':  session['id'],
+		'content': message
+	}
+
+	mysql.query_db(query, data)
+	return redirect('/wall')
+
+
+@app.route('/message/<msg_id>', methods=['POST'])
+def comment(msg_id):
+	comment = request.form['comment']
+	if not comment or len(comment.strip()) < 1:
+		flash('You must type words to comment!')
+		return redirect('/wall')
+
+	query = "INSERT INTO comments (user_id, message_id, content, created_at, updated_at) VALUES (:user_id, :message_id, :content, NOW(), NOW())"
+	data = {
+		'user_id':  session['id'],
+		'message_id': msg_id,
+		'content': comment
+	}
+	mysql.query_db(query, data)
+	return redirect('/wall')
 
 
 @app.route('/reset')

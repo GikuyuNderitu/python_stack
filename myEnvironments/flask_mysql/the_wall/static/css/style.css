@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin");
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Lobster");
 * {
   margin: 0;
-  padding: 0;
-  border: 0; }
+  padding: 0; }
 
 html {
   font-size: 1rem; }
@@ -15,7 +14,7 @@ html {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-family: "Cabin", sans-serif; }
+  font-family: "Comfortaa", sans-serif; }
 
 a {
   color: black;
@@ -35,17 +34,16 @@ header {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  border-bottom: 2px solid #06d;
-  width: 100%;
-  padding: 20px; }
+  border-bottom: 2px solid #06d; }
   header > h1 {
-    font-family: "Bungee Shade", cursive;
+    font-family: "Lobster", cursive;
     font-size: 3.5em; }
 
 #session-section {
-  font-size: 1.2em; }
+  font-size: 1em; }
 
 .session-button {
+  margin-left: 10px;
   padding: 5px 10px;
   border: 2px solid #06d;
   border-radius: 9px; }
@@ -54,7 +52,6 @@ main {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100vw;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -62,6 +59,27 @@ main {
   -ms-flex-align: center;
   align-items: center;
   padding: 20px 0; }
+
+#message-container {
+  margin-bottom: 30px;
+  width: 100%; }
+
+.message {
+  width: 100%; }
+
+.message-head {
+  font-size: 2em;
+  font-family: "Lobster", cursive;
+  font-weight: 200; }
+
+.comments {
+  margin-top: 20px; }
+
+.comment-head {
+  font-size: 1.4em; }
+
+#comment-container {
+  margin-top: 25px; }
 
 .red {
   background: #800; }

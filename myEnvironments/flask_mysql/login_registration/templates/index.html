@@ -12,7 +12,7 @@
 				<h1>Logo Here</h1>
 				<div id="session-section">
 					{% if 'id' in session %}
-					<span id="greeting" class="">Welcome, {{user['first_name']}}</span>
+					<span id="greeting" class="">Welcome, {{session['first_name']}}</span>
 					<a class="session-button" href="/reset">Logout</a>
 					{% else %}
 					<span id="greeting" class="">Welcome! Please feel free to </span>
@@ -22,6 +22,13 @@
 				</div>
 			</header>
 			<main>
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+					{% for message in messages %}
+					<p class="flash-message red">{{message}}</p>
+					{% endfor %}
+					{% endif%}
+				{% endwith %}
 				<div id="login-modal" class="modal modal-fixed-footer">
 					<div class="modal-content">
 						<h4 class="teal-text">Login</h4>
@@ -29,14 +36,14 @@
 							<form id="login-form" class="col s12" action="/login" method="post">
 								<div class="row">
 									<div class="input-field col s12">
-										<input id="email" name="email" type="text">
-										<label for="email">Email</label>
+										<input id="login-email" name="email" type="text">
+										<label for="login-email">Email</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<input id="password" name="password" type="password" class="validate">
-										<label for="password">Password</label>
+										<input id="login-password" name="password" type="password" class="validate">
+										<label for="login-password">Password</label>
 									</div>
 								</div>
 							</form>
@@ -53,23 +60,27 @@
 							<form id="register-form" class="col s12" action="/register" method="post">
 								<div class="row">
 									<div class="input-field col s6">
-										<input id="first_name" type="text" >
+										<input id="first_name" name="first_name" type="text" >
 										<label for="first_name">First Name</label>
 									</div>
 									<div class="input-field col s6">
-										<input id="last_name" type="text" >
+										<input id="last_name" name="last_name" type="text" >
 										<label for="last_name">Last Name</label>
 									</div>
 								</div>
 								<div class="row">
-									<div class="input-field col s12">
-										<input id="password" type="password" >
+									<div class="input-field col s6">
+										<input id="password" name="password" type="password" >
 										<label for="password">Password</label>
+									</div>
+									<div class="input-field col s6">
+										<input id="confirmation" name="confirmation" type="password" >
+										<label for="confirmation">Password</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<input id="email" type="email" >
+										<input id="email" type="text" name="email">
 										<label for="email">Email</label>
 									</div>
 								</div>
@@ -77,9 +88,9 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button form="register-form" type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Register</a>
-						</div>
+						<button form="register-form" formaction="/register" type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Register</button>
 					</div>
+				</div>
 			</main>
 		</div>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

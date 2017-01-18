@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin')
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Lobster')
 
-$title-font: 'Bungee Shade', cursive
-$content-font: 'Cabin', sans-serif
+$title-font: 'Lobster', cursive
+$content-font: 'Comfortaa', sans-serif
 *
 	margin: 0
 	padding: 0
-	border: 0
+	// border: 0
 
 html
 	font-size: 1rem
@@ -30,27 +30,47 @@ header
 	justify-content: space-between
 	align-items: center
 	border-bottom: 2px solid #06d
-	width: 100%
-	padding: 20px
 
 	&>h1
 		font-family: $title-font
 		font-size: 3.5em
 
 #session-section
-	font-size: 1.2em
+	font-size: 1em
+
 
 .session-button
+	margin-left: 10px
 	padding: 5px 10px
 	border: 2px solid #06d
 	border-radius: 9px
 
 main
 	display: flex
-	width: 100vw
 	flex-direction: column
 	align-items: center
 	padding: 20px 0
+
+#message-container
+	margin-bottom: 30px
+	width: 100%
+
+.message
+	width: 100%
+
+.message-head
+	font-size: 2em
+	font-family: $title-font
+	font-weight: 200
+
+.comments
+	margin-top: 20px
+
+.comment-head
+	font-size: 1.4em
+
+#comment-container
+	margin-top: 25px
 
 .red
 	background: #800

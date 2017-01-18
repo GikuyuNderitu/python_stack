@@ -1,12 +1,10 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from mysqlconnection import MySQLConnector
-from livereload import Server
 import re
 
 app = Flask(__name__)
 app.debug = True
 app.secret_key = 'ThisIsSecret'
-server = Server(app.wsgi_app)
 mysql = MySQLConnector(app, 'friendsdb')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -113,6 +111,4 @@ def delete(email_id):
 	mysql.query_db(query, data)
 	return redirect('/')
 
-
-server.watch('./')
-server.serve(port=5500, host='127.0.1.1')
+app.run()
