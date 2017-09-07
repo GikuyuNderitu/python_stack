@@ -3,6 +3,7 @@
 myEnvironments
 **/static/**/sass
 **/static/sass
+**/static/js/animation.js
 **/static/js/buttons.js
 **/static/js/cards.js
 **/static/js/carousel.js
