@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Products</title>
+		<link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<h2>Products</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for obj in products %}
+					<tr>
+						<td>{{obj.name}}</td>
+						<td>{{obj.description}}</td>
+						<td>${{obj.price}}</td>
+						<td class="action-col">
+							<span class="action-link"><a href="{% url 'products:show' id=obj.id %}">Show</a></span>
+							<span class="action-link"><a href="{% url 'products:edit' id=obj.id %}">Edit</a></span>
+							<span><a class="route" href="{% url 'products:delete' id=obj.id %}">Remove</a></span>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			<a href="{% url 'products:add' %}" class="route">Add a Product</a>
+		</div>
+	</body>
+</html>

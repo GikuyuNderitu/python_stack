@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Courses</title>
+		<link rel="stylesheet" href="{% static "courses/css/style.css" %}">
+	</head>
+	<body>
+		<div class="container">
+			<h2 class="head">Add a new Course</h2>
+			{% if messages %}
+			{% for message in messages %}
+				<p class="error">{{message}}</p>
+			{% endfor %}
+			{% endif %}
+			<form class="form-data" action="{% url 'course:add' %}" method="post">
+				{% csrf_token %}
+				<div class="row form-row">
+					<label for="">Name:</label>
+					<input type="text" name="name" class="input-field">
+				</div>
+				<div class="row form-row">
+					<label for="">Description:</label>
+					<textarea name="description" class="input-field text-field"></textarea>
+				</div>
+				<input type="submit" value="Add" class="submit">
+			</form>
+
+			<a href="{% url 'login:index'%}" class="submit margin-top-15">Go Back Home!</a>
+
+			<h2 class="course-head" >Courses</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Course Name</th>
+						<th>Description</th>
+						<th>Date Added</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if courses %}
+					{% for course in courses  %}
+						<tr>
+							<td>{{course.course}}</td>
+							<td>{{course.description.description}}</td>
+							<td>{{course.created_at}}</td>
+							<td><a href="{% url 'course:show_delete' id=course.id %}">Remove</a></td>
+						</tr>
+					{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

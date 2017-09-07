@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ninjas</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static "ninjas/css/style.css" %}">
+	</head>
+	<body>
+		<div class="container">
+			{% if not color %}
+			<div class="row">
+				<h1>The Turtles</h1>
+				<img src="{% static "ninjas/images/tmnt.png" %}" class="group" alt="The Ninja Squad">
+			</div>
+			<div class="row">
+				<a href="ninjas/blue"><img src="{% static "ninjas/images/leonardo.jpg" %}" alt="Leonardo"></a>
+				<a href="ninjas/red"><img src="{% static "ninjas/images/raphael.jpg" %}" alt="Raphael"></a>
+				<a href="ninjas/orange"><img src="{% static "ninjas/images/michelangelo.jpg" %}" alt="Michelangelo"></a>
+				<a href="ninjas/purple"><img src="{% static "ninjas/images/donatello.jpg" %}" alt="Donatello"></a>
+			</div>
+			{% elif color == 'blue' %}
+			<img src="{% static "ninjas/images/leonardo.jpg" %}" alt="Leonardo">
+			<a href="/goback" class="find">Go Back</a>
+			{% elif color == 'red' %}
+			<img src="{% static "ninjas/images/raphael.jpg" %}" alt="Raphael">
+			<a href="/goback" class="find">Go Back</a>
+			{% elif color == 'orange' %}
+			<img src="{% static "ninjas/images/michelangelo.jpg" %}" alt="Michelangelo">
+			<a href="/goback" class="find">Go Back</a>
+			{% elif color == 'purple' %}
+			<img src="{% static "ninjas/images/donatello.jpg" %}" alt="Donatello">
+			<a href="/goback" class="find">Go Back</a>
+			{% else %}
+			<img src="{% static "ninjas/images/notapril.jpg" %}" alt="Megan Fox">
+			<a href="/goback" class="find">Go Back</a>
+			{% endif %}
+		</div>
+	</body>
+</html>

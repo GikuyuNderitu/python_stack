@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+		<script type="text/javascript" src="{{url_for('static',filename='js/app.js')}}"></script>
+	</head>
+	<body>
+		<h1>Hello Flask</h1>
+		<p>Welcome!</p>
+		<p>My name is cool {{name}}</p>
+		{% for i in range(0,5) %}
+		<p>{{i}}</p>
+		{% endfor  %}
+	</body>
+</html>

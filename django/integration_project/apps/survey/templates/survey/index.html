@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Survey Form</title>
+		<link rel="stylesheet" href="{% static 'survey/css/style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			{% if messages %}
+			<div class="error-box">
+			{% for message in messages %}
+				<p class="error message">{{message}}</p>
+			{% endfor %}
+			</div>
+			{% endif %}
+			<form class="submission col" action="surveys/process" method="post">
+				{% csrf_token %}
+				<label class="row">
+					Your Name:
+					{% if 'name' in request.session %}
+					<input type="text" name="name" value="{{request.session.name}}" class="input-box">
+					{% else %}
+					<input type="text" name="name" class="input-box">
+					{% endif %}
+				</label>
+				<label class="row">
+					Dojo Location:
+					{% if  'loc' in request.session %}
+					<select id="locations" class="input-box" name="loc" value="{{request.session.loc}}"></select>
+					{% else %}
+					<select id="locations" class="input-box" name="loc"></select>
+					{% endif %}
+				</label>
+				<label class="row">
+					Favorite Language:
+					{% if 'lang' in request.session %}
+					<select id="languages" class="input-box" name="lang" value="{{request.session.lang}}"></select>
+					{% else %}
+					<select id="languages" class="input-box" name="lang"></select>
+					{% endif %}
+				</label>
+				<label class="comment-label">
+					Comment (optional):
+					{% if  'comment' in request.session %}
+					<textarea name="comment" rows="8" cols="80">{{request.session.name}}</textarea>
+					{% else %}
+					<textarea name="comment" rows="8" cols="80"></textarea>
+					{% endif %}
+				</label>
+				<input type="submit" value="Submit" class="submit">
+			</form>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="{% static 'survey/js/app.js'%}" charset="utf-8"></script>
+	</body>
+</html>

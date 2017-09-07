@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Delete a Course</title>
+		<link rel="stylesheet" href="{% static "courses/css/style.css" %}">
+	</head>
+	<body>
+		<div class="container">
+			<h1>Are you sure you want to delete the following course</h1>
+			<div class="row">
+				<span>Name:</span>
+				<span class="marg-left">{{course.course}}</span>
+			</div>
+			<div class="row">
+				<span>Description:</span>
+				<span class="marg-left">{{course.description.description}}</span>
+			</div>
+			<div class="row full-width">
+				<a class="route" href="{% url 'courses:index' %}">No</a>
+				<a href="{% url 'courses:delete' id=course.id %}" class="route">Yes, Delete this Course!</a>
+			</div>
+		</div>
+	</body>
+</html>

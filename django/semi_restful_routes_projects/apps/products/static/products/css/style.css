@@ -1,0 +1,152 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: sans-serif;
+}
+
+html{
+	font-size: 1rem;}
+
+.container{
+	margin: 0 auto;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	/*align-items: fle;*/
+	padding: 10px;
+}
+
+.container > *{
+	margin-bottom: 20px;
+}
+
+table{
+	border: 2px solid #111;
+	width: 100%;
+}
+
+thead th{
+	background: #333;
+	color: #eee;
+	text-align: center;
+}
+
+tr{
+	border-bottom: 1px solid #000;
+	height: 50px;
+}
+td{
+	text-align: center;
+}
+td span{
+	height: 100%;
+}
+.product-form{
+	display: flex;
+	flex-direction: column;
+	font-size: 1.2em;
+}
+
+.product-form label{
+	margin-top: 40px
+}
+
+.input-field{
+	outline: 0;
+	border-bottom: 1px solid #000;
+	font-size: 1.3em;
+	margin: 10px 0;
+	padding: 20px 0 5px 10px;
+	transition: border-bottom 150ms ease;
+}
+
+
+.input-field:hover, .input-field:focus, .input-field:active{
+	border-bottom: 3px solid lightseagreen;
+}
+
+
+.submit{
+	padding: 10px 25px;
+	font-size: 1em;
+	max-width: 100px;
+	border-radius: 5px;
+	border: 3px solid lightseagreen;
+	color: lightseagreen;
+	background: transparent;
+	transition: font-weight 100ms ease, color 100ms ease, background 500ms ease;
+}
+
+.submit:hover{
+	cursor: pointer;
+	color: white;
+	background: lightseagreen;
+	font-weight: 700;
+}
+
+
+.route{
+	padding: 7px 20px;
+	font-size: 1.3em;
+	font-weight: 600;
+	text-decoration: none;
+	color: #06d;
+	border: 3px solid #06d;
+	border-radius: 7px;
+	max-width: 100px;
+	text-align: center;
+	transition: font-weight 100ms ease, color 100ms ease, background 500ms ease;
+}
+
+.route:hover{
+	cursor: pointer;
+	color: white;
+	background: #06d;
+	font-weight: 700;
+}
+
+.message{
+	padding: 10px 30px;
+	border-radius: 7px;
+	color: white;
+	font: 500 1.3em sans-serif;
+	text-align: center;
+	margin: 20px 0;
+}
+
+.success{
+	background: #071;
+	transition: background 200ms ease, font 200ms ease;
+}
+
+.success:hover{
+	background: #0a1;
+	font: 700 1.4em sans-serif;
+}
+.error{
+	background: #800;
+	transition: background 200ms ease, font 200ms ease;
+}
+
+.error:hover{
+	background: #b00;
+	font: 700 1.4em sans-serif;
+}
+
+.action-col{
+	display: flex;
+	justify-content: space-around;
+	margin-top: 13px;
+}
+
+.action-link{
+	border-right: 3px solid #000;
+	padding: 0 10px
+}
+
+.row{
+	display: flex;
+	width: 70%;
+	justify-content: space-between;
+}

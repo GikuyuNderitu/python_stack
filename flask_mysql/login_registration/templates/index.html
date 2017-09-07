@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Users</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/materialize.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<h1>Logo Here</h1>
+				<div id="session-section">
+					{% if 'id' in session %}
+					<span id="greeting" class="">Welcome, {{session['first_name']}}</span>
+					<a class="session-button" href="/reset">Logout</a>
+					{% else %}
+					<span id="greeting" class="">Welcome! Please feel free to </span>
+					<a href="#login-modal" class="session-button">Login</a>
+					<a href="#register-modal" class="session-button">Register</a>
+					{% endif %}
+				</div>
+			</header>
+			<main>
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+					{% for message in messages %}
+					<p class="flash-message red">{{message}}</p>
+					{% endfor %}
+					{% endif%}
+				{% endwith %}
+				<div id="login-modal" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h4 class="teal-text">Login</h4>
+						<div class="row">
+							<form id="login-form" class="col s12" action="/login" method="post">
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="login-email" name="email" type="text">
+										<label for="login-email">Email</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="login-password" name="password" type="password" class="validate">
+										<label for="login-password">Password</label>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button form="login-form" type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Login</button>
+					</div>
+				</div>
+				<div id="register-modal" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h4 class="teal-text">Register</h4>
+						<div class="row">
+							<form id="register-form" class="col s12" action="/register" method="post">
+								<div class="row">
+									<div class="input-field col s6">
+										<input id="first_name" name="first_name" type="text" >
+										<label for="first_name">First Name</label>
+									</div>
+									<div class="input-field col s6">
+										<input id="last_name" name="last_name" type="text" >
+										<label for="last_name">Last Name</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input id="password" name="password" type="password" >
+										<label for="password">Password</label>
+									</div>
+									<div class="input-field col s6">
+										<input id="confirmation" name="confirmation" type="password" >
+										<label for="confirmation">Password</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="email" type="text" name="email">
+										<label for="email">Email</label>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button form="register-form" formaction="/register" type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Register</button>
+					</div>
+				</div>
+			</main>
+		</div>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+		<script type="text/javascript" src="{{url_for('static',filename='js/app.js')}}">
+
+		</script>
+	</body>
+</html>

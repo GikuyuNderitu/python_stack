@@ -1,0 +1,92 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+html{
+	font-size: 1rem;
+}
+
+.container{
+	margin: 0 auto;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 80%;
+}
+
+.message{
+	padding: 5px 10px;
+	border: 2px solid #000;
+	border-radius: 3px;
+	margin-bottom: 20px;
+	font-weight: 700;
+	font-size: 2em;
+}
+
+.error{
+	color: white;
+	background: #800;
+}
+
+.success{
+	color: black;
+	background: #080;
+}
+
+.email-form{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 1.5em;
+}
+
+.row{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.input-field{
+	width: 60%;
+}
+
+.submit{
+	margin-top: 20px;
+	align-self: flex-end;
+	font-size: 1.1em;
+	padding: 3px 15px;
+	background: teal;
+	color: white;
+}
+
+
+.route{
+	padding: 3px 7px;
+	color: white;
+	background: #07d;
+	border-radius: 7px 5px;
+	text-decoration: none;
+	font-size: 1.7em;
+	font-weight: 700;
+}
+
+
+.email-results{
+	border-top: 4px solid #000;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.delete{
+	color: red;
+	text-decoration: none;
+}
+
+.delete:hover{
+	text-decoration: underline;
+}

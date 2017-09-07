@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ERROR!</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	</head>
+	<body>
+		<div class="error-container">
+			<div id="error">
+				<h1>Error Messages</h1>
+				<h3>You Done Goofed!</h3>
+				<div class="message">
+					{% with messages = get_flashed_messages() %}
+					{% if messages %}
+					{% for message in messages %}
+					<p>{{message}}</p>
+					{% endfor %}
+					{% endif %}
+					{% endwith %}
+					<a href="/" class="route">Go Back and Fix it Sucka!</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

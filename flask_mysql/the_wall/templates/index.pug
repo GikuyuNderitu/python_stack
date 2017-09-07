@@ -1,0 +1,91 @@
+doctype
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		title The Wall
+		link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css")
+		link(rel="stylesheet", href="{{url_for('static', filename='css/style.css')}}")
+	body
+		.container
+			header
+				h1 The Wall
+				.session-section
+					span.flow-text Welcome
+					a.flow-text.session-button(href="/reset") Logout
+					a.flow-text.session-button(href="#login-modal") Login
+					a.flow-text.session-button(href="#registration-modal") Register
+					#registration-modal.modal
+						.modal-content
+							.row
+								h4.cyan-text Registration
+								form.col.s12#registration-form
+									.row
+										.input-field.col.s6
+											input#first_name(type="text", name="first_name")
+											label(for="first_name") First Name
+										.input-field.col.s6
+											input#last_name(type="text", name="last_name")
+											label(for="last_name") Last Name
+									.row
+										.input-field.col.s6
+											input#register-password(type="password", name="password")
+											label(for="register-password") Password
+										.input-field.col.s6
+											input#confirmation(type="password", name="confirmation")
+											label(for="confirmation") Confirm Password
+									.row
+										.input-field.col.s12
+											input#register-email(type="text", name="email")
+											label(for="register-email") Email
+						.modal-footer
+							button.btn.cyan(type="submit", form="registration-form", formaction="/register" formmethod="post") Register
+					#login-modal.modal
+						.modal-content
+							.row
+								h4.cyan-text Login
+								form.col.s12#login-form
+									.row
+										.input-field.col.s12
+											input#login-email(type="text", name="email")
+											label(for="login-email") Email
+										.input-field.col.s12
+											input#login-password(type="password", name="password")
+											label(for="login-password") Password
+						.modal-footer
+							button.btn.cyan(type="submit", form="login-form", formaction="/login" formmethod="post") Login
+			main
+				#message-container.container
+					h4.cyan-text Post a Message
+					form.col.s12#message-form
+						.row
+							.input-field.col.s12
+								textarea.materialize-textarea#message-box(placeholder="Post a message to the wall for all to see!")
+								label(for="message-box") Message Box
+						.row
+							button.right.btn.cyan(type="submit", form="message-form", formaction="/message" formmethod="post") Post a Message
+				.section.message.row
+					h5.col.s4.cyan-text User Name - Month Day Year
+					p.col.s12.post Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					.section.col.s11.offset-s1.comments
+						.comment
+							h5.cyan-text User Name - Month Day Year
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						#comment-container
+							h5.cyan-text Post a Comment
+							form#comment-form
+								.row
+									.input-field.col.s12
+										textarea.materialize-textarea#comment-box(placeholder="Post a comment for the user to see!")
+										label(for="comment-box") Comment Box
+								.row
+									button.btn.cyan.right(type="submit", form="login-form", formaction="/login" formmethod="post") Post a Comment
+				.divider
+				.section.message.row
+					h5.cyan-text User Name - Month Day Year
+					p.post Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					.section.comments.col
+
+		script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
+		script(type="text/javascript", src="{{url_for('static',filename='js/materialize.min.js')}}")
+		script(type="text/javascript", src="{{url_for('static',filename='js/app.js')}}")

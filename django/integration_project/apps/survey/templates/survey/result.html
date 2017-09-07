@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Survey Form</title>
+		<link rel="stylesheet" href="{% static 'survey/css/style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			{% if messages %}
+			{% for message in messages %}
+				<p class="success message">{{message}}</p>
+			{% endfor %}
+			{% endif %}
+			{% if not request.session.completed %}
+				<h1>You seem to have reached this page in error!</h1>
+			{% else %}
+			<div class="info">
+				<h3 class="header">Submitted Information</h3>
+				<div class="row">
+					<span>Name:</span>
+					<span>{{request.session.name}}</span>
+				</div>
+				<div class="row">
+					<span>Dojo Location:</span>
+					<span>{{request.session.loc}}</span>
+				</div>
+				<div class="row">
+					<span>Favorite Language:</span>
+					<span>{{request.session.lang}}</span>
+				</div>
+				<div class="row">
+					<span>Comment:</span>
+					<span>{{request.session.comment}}</span>
+				</div>
+			</div>
+			{% endif %}
+			<a href="/reset" class="reset">Go Back</a>
+		</div>
+	</body>
+</html>

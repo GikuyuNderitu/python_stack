@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Random Word Generator</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'randomwordgenerator/css/style.css' %}" media="screen">
+		<script src="" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container">
+			{% if 'num' not in request.session %}
+			<h1 class='header'>Random Word Generator:</h1>
+			<p class="num-display">Click 'Generate' to get a random word!</p>
+			{% else %}
+			<h3 class='header'>Random Word (attempt #{{request.session.attempt}})</h3>
+			<p class="num-display">{{request.session.num}}</p>
+			{% endif %}
+			<form class="new-rand-form" action="/generate" method="post">
+				{% csrf_token %}
+				<button type="submit" class="submit-button">Generate</button>
+			</form>
+
+		</div>
+	</body>
+</html>

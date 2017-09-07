@@ -1,0 +1,61 @@
+<!-- TODO: Use  -->
+<html>
+	<head>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/static/js/app.js"></script>
+	</head>
+	<body>
+		<div id="container" data-num = '{{session['counter']}}'>
+			<header>
+				<h1>Ninja Gold!</h1>
+				{% if 'total' not in session: %}
+				<h3>Total Gold:   <span class="red"  id="gold-value">0</span></h3>
+				{% else: %}
+				<h3>Total Gold:   <span id="gold-value">{{session['total']}}</span></h3>
+				{% endif %}
+			</header>
+			<main>
+				<section class="form-section">
+					<form class="card" action="/process_money" method="post">
+						<h2>Farm</h2>
+						<h3 class="earnings">(earns 10 - 20 golds)</h3>
+						<input type="hidden" name="building" value="farm">
+						<button class="route" type="submit">Find Gold!</button>
+					</form>
+					<form class="card" action="/process_money" method="post">
+						<h2>Cave</h2>
+						<h3 class="earnings">(earns 5 - 10 golds)</h3>
+						<input type="hidden" name="building" value="cave">
+						<button class="route" type="submit">Find Gold!</button>
+					</form>
+					<form class="card" action="/process_money" method="post">
+						<h2>House</h2>
+						<h3 class="earnings">(earns 2 - 5 golds)</h3>
+						<input type="hidden" name="building" value="house">
+						<button class="route" type="submit">Find Gold!</button>
+					</form>
+					<form class="card" action="/process_money" method="post">
+						<h2>Casino</h2>
+						<h3 class="earnings">(earns/takes 0 - 50 golds)</h3>
+						<input type="hidden" name="building" value="casino">
+						<button class="route" type="submit">Find Gold!</button>
+					</form>
+				</section>
+
+				<h4>Activities:</h4>
+				<section class="activities">
+					{% if 'list' in session %}
+					{% for nval in session['list']: %}
+					{% if nval[0] < 1: %}
+					<p class="red">Entered a {{nval[1]['building']}} and lost golds {{nval[0] * -1}} ... Ouch.. ({{nval[1]['time']}})</p>
+					{% else: %}
+					<p class="green">Earned {{nval[0]}} golds from the {{nval[1]['building']}}! ({{nval[1]['time']}})</p>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+				</section>
+			</main>
+		</div>
+	</body>
+</html>

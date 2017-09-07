@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		{% load staticfiles %}
+		<title>Edit</title>
+		<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<div class="header-row">
+					<h1 id="friends-head">Currently Editing:</h1>
+					<h3 id="current-edit" class="red-text">{{users.0.email}}</h3>
+				</div>
+				<a class="home" href="/">Edit another friend</a>
+			</header>
+			{% if messages %}
+			{% for message in messages %}
+			<div class="margin-top-15 green flash-message">{{message}}</div>
+			{% endfor %}
+			{% endif %}
+			<form id="update-data" action="/friends/{{users.0.id}}" method="post">
+				<table>
+					<thead>
+						<tr>
+							<th>Commit State</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="current-state-row">
+							<td>
+								<h3 class="state-head">Current State</h3>
+							</td>
+							<td>
+								<label for="first-name"><span>{{users.0.first_name}}</span></label>
+							</td>
+							<td>
+								<label for="first-name"><span>{{users.0.last_name}}</span></label>
+							</td>
+							<td>
+								<label for="first-name"><span>{{users.0.email}}</span></label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h3 class="state-head">New Data</h3>
+							</td>
+							<td>
+								<input type="text" name="first_name" id="first-name" class="form-update-input">
+							</td>
+							<td>
+								<input type="text" name="last_name" id="last-name" class="form-update-input">
+							</td>
+							<td>
+								<input type="text" name="email" id="email" class="form-update-input" >
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><input type="submit" class="submit home" value="Submit"></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

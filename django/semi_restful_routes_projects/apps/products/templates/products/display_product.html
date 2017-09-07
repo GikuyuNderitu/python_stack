@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Product # Info</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<h2>Product {{product.id}}</h2>
+			<div class="row">
+				<label class="info-label">Name:</label>
+				<span class="info-data">{{product.name}}</span>
+			</div>
+			<div class="row">
+				<label class="info-label">Description:</label>
+				<span class="info-data">{{product.description}}</span>
+			</div>
+			<div class="row">
+				<label class="info-label">Price:</label>
+				<span class="info-data">${{product.price}}</span>
+			</div>
+			<div class="row">
+				<a href="{% url 'products:edit' id=product.id %}" class="route">Edit</a>
+				<a href="{% url 'products:index' %}" class="route">Go Home</a>
+			</div>
+		</div>
+	</body>
+</html>

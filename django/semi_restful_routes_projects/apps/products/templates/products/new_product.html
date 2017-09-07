@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Create a New Product</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<h2>Products</h2>
+			{% if messages %}
+			{% for message in messages %}
+			<p class="{{message.tags}} message">{{message}}</p>
+			{% endfor %}
+			{% endif %}
+			<form id="new-form" class="product-form" action="{% url 'products:create' %}" method="post">{% csrf_token %}
+				<label for="name">Name</label>
+				<input type="text" name="name" id="name" class="input-field">
+				<label for="description">Description</label>
+				<input type="text" name="description" id="description" class="input-field">
+				<label for="price">Price</label>
+				<input type="text" name="price" id="price" class="input-field">
+			</form>
+			<button class="submit" type="submit" form="new-form">Create</button>
+			<a href="{% url 'products:index' %}" class="route">Go Home</a>
+		</div>
+	</body>
+</html>

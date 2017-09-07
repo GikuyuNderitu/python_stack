@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Join Courses</title>
+		<link rel="stylesheet" href="{% static 'login_reg/css/style.css' %}">
+	</head>
+	<body>
+		<div id="container">
+			<form class="course-users-form" action="{% url 'login:match' %}" method="post">{% csrf_token %}
+				<div class="course-user-row">
+					<select class="input-select" name="uid">
+					{% for user in users %}
+						<option value="{{user.id}}">{{user.first_name}}</option>
+					{% endfor %}
+					</select>
+					<select class="input-select" name="cid">
+					{% for course in courses %}
+						<option value="{{course.id}}">{{course.course}}</option>
+					{% endfor %}
+					</select>
+					<input type="submit" class="submit" value="Add to course">
+				</div>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>User</th>
+						<th>Course</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for uc in user_courses %}
+						<tr>
+							<td>{{uc.user.first_name}}</td>
+							<td>{{uc.course.course}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

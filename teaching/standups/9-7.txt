@@ -1,0 +1,14 @@
+jyohan - routes
+yves - says he's okay #
+stephen - requests library
+seth - on OOP callCenter => __score methods
+brice -  => Working on the windows command line ->  Behind 
+raymond - Working on OOP => Not working 
+sam - halfway through OOP => working his way through
+daniel - OOP => overly complicated 
+zach - at flask => init syntax, git issues
+joy - catching up on yesterdays assignments, algorithms, computer thought process
+gemieches - finding the answers are 
+devi - just finished OOP, python extra => 
+
+git advanced concepts
